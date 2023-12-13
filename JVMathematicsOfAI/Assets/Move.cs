@@ -1,17 +1,20 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class Move : MonoBehaviour {
+public class Move : MonoBehaviour
+{
+    public float speed = 2.0f;
+    public Transform goal;
 
-    public Vector3 goal = new Vector3(5, 0, 4);
-    public float speed = 0.1f;
-
-    void Start() 
+    void Start()
     {
 
     }
 
-    void Update() 
+    void LateUpdate()
     {
-        this.transform.Translate(goal.normalized * speed * Time.deltaTime);
+        Vector3 direction = goal.position - this.transform.position;
+        this.transform.Translate(direction.normalized * speed * Time.deltaTime);
     }
 }
